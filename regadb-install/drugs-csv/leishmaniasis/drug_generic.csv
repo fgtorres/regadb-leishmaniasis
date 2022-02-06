@@ -1,0 +1,9 @@
+generic_ii,generic_id,class_ii,generic_name,atc_code,genomes
+1,MA,1,Meglumine antimoniate,P01CB01,leishmaniasis
+2,PENT,2,Pentamidine,P01CX01,leishmaniasis
+3,AMPHB,3,Amphotericin B,A01AB04,leishmaniasis
+4,AMPHBL,3,Amphotericin B Liposomal,J02AA01,leishmaniasis
+5,AZI,4,Azithromycin,J01FA10,leishmaniasis
+6,PENTO,5,Pentoxifylline,C04AD03,leishmaniasis
+7,DIC,6,Diclofenac,D11AX18,leishmaniasis
+8,META,6,Metamizole,N02BB02,leishmaniasis

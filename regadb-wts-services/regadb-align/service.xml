@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<service>
+	<description>RegaDB Alignment tool</description>
+	<version>2.0</version>
+<inputs>
+	<input>
+		<name>
+		sequences
+		</name>
+		<description>
+		unaligned fasta file
+		</description>
+	</input>
+	<input>
+		<name>
+		genome
+		</name>
+		<description>
+		organism name of sequences
+		</description>
+	</input>
+</inputs>
+<outputs>
+	<output>
+		<name>
+		mutations
+		</name>
+		<description>
+		mutations file
+		</description>
+
+	</output>
+</outputs>
+</service>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regadb-settings>
+ <institute>
+   <log-dir>/etc/rega_institute/regadb/leishmaniasis/log</log-dir>
+   <import-tool-dir>/etc/rega_institute/regadb/leishmaniasis/import</import-tool-dir>
+   <query-result-dir>/etc/rega_institute/regadb/leishmaniasis/queryResult</query-result-dir>
+   <files-store-dir>/etc/rega_institute/regadb/leishmaniasis/files</files-store-dir>
+
+   <report-date-tolerance>2</report-date-tolerance>
+
+   <date-format>dd/MM/yyyy</date-format>
+
+   <organism-filter>Leishmaniasis</organism-filter>
+
+   <logo>pics/fiocruz/banner-leish.png</logo>
+
+
+     <multiple-test-result-forms>
+       <form name="1. IDENTIFICACAO" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+         <tests>
+	  <test description="Residência Atual" type="Residêcia Atual" organism="Leishmaniasis" showOrganism="false" mandatory = "true"/>
+	  <test description="Município que reside" type="Município que reside" organism="Leishmaniasis" showOrganism="false" mandatory = "true"/>
+	  <test description="Tempo de Moradia (meses)" type="Tempo de moradia (meses)" organism="Leishmaniasis" showOrganism="false" mandatory = "true"/>
+	  <test description="Tipo de Moradia" type="Tipo de Moradia" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Existe alguém que já teve LTA na mesma casa ou região que você mora?" type="Existe alguém que já teve LTA na mesma casa ou região que você mora?" organism="Leishmaniasis" showOrganism="false"/>
+       </tests>
+      </form>
+      <form name="2. ANTECEDENTES MEDICOS" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+         <tests>
+          <test description="Está em uso de medicação?" type="Está em uso de medicação?" organism="Leishmaniasis" showOrganism="false" hide="sim;Qual medicaçao estã usando?"/>
+	  <test description="Qual medicaçao estã usando?" type="Qual medicação está usando?" organism="Leishmaniasis" showOrganism="false" visible="false" mandatory="true"/>
+	  <test description="Diabetes mellitus" type="Diabetes mellitus" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Doença coronariana" type="Doença coronariana" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Chagas" type="Chagas" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Outras doenças" type="Outras doenças" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Qual doença?" type="Qual doença?" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description=" Rinite ou sinusite crônica" type=" Rinite ou sinusite crônica" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Já teve LTA" type="Já teve LTA" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Foi tratado (LTA positivo)" type="Foi tratado (LTA positivo)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Natureza do tratamento (LTA positivo)" type="Natureza do tratamento (LTA positivo)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Droga usada e dose (LTA positivo)" type="Droga usada e dose (LTA positivo)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Ano de tratamento (LTA positivo)" type="Ano de tratamento (LTA positivo)" organism="Leishmaniasis" showOrganism="false"/>
+ 	  <test description="Onde foi tratado (LTA positivo)" type="Onde foi tratado (LTA positivo)" organism="Leishmaniasis" showOrganism="false"/>
+	 </tests>
+      </form>
+      <form name="3. SITUACAO EPIDEMIOLOGICA" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+	<tests>
+	  <test description="Número de familiares em casa (Excluir paciente)" type="Número de familiares em casa (Excluir paciente)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Existem animais no quintal" type="Existem animais no quintal" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Galinhas" type="Galinhas" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Cães" type="Cães" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Outros (animais)" type="Outros (animais)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Qual animal (outro)" type="Qual animal (outro)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Renda familiar mensal (sal. Mínimos) " type="Renda familiar mensal (sal. Mínimos) " organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Bolsa-família" type="Bolsa-família" organism="Leishmaniasis" showOrganism="false"/>
+	</tests>
+      </form>
+      <form name="4. EXAME FISICO CUTANEA" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+        <tests>
+	  <test description="Suspeita Diagnóstica (SD)" type="Status da Doença (SD)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Número Total de Lesão(ões)" type="Número Total de Lesão(ões)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Lesão maior (cm)" type="Lesão maior (cm)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Lesão maior (área)" type="Lesão maior (área)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Duração (meses)" type="Duração (meses)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização(ões)" type="Localização(ões)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Característica(s) da ferida(s)" type="Característica(s) da ferida(s)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Se lesão ulcerada" type="Se lesão ulcerada" organism="Leishmaniasis" showOrganism="false"/>
+          <test description="Foto Cutânea" type="Foto Cutânea" organism="Leishmaniasis" showOrganism="false" />
+	<test description="Presença de Linfonodos" type="Presença de Linfonodos" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Caso sim, descreva onde (presença de linfonodos)" type="Caso sim, descreva onde (presença de linfonodos)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Tamanho do gânglio (cm)" type="Tamanho do gânglio (cm)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Observações (Cutânea)" type="Observações (Cutânea)" organism="Leishmaniasis" showOrganism="false"/>
+	  </tests>
+      </form>
+      <form name="5. EXAME FISICO MUCOSA" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+        <tests>
+	  
+	  <test description="Suspeita Diagnostica (SD) (Mucosa)" type="Suspeita Diagnostica (SD) (Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Lesão Mucosa ativa " type="Lesão Mucosa ativa" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Formas(Lesão Mucosa)" type="Formas(Lesão Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 1 (Lesão Mucosa)" type="Localização 1 (Lesão Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 2 (Lesão Mucosa)" type="Localização 2 (Lesão Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 3 (Lesão Mucosa)" type="Localização 3 (Lesão Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Se nasal(Lesão Mucosa)" type="Se lesão ulcerada" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Exame Físico: Mucosa Nasal" type="Exame Físico: Mucosa Nasal" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 1 (Mucosa nasal)" type="Localização 1 (Mucosa nasal)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 2 (Mucosa nasal)" type="Localização 2 (Mucosa nasal)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 3 (Mucosa nasal)" type="Localização 3 (Mucosa nasal)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description=" Mucosa oral e faringe" type=" Mucosa oral e faringe" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Queixas associadas (Mucosa oral e faringe)" type="Queixas associadas (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Exame Físico: Mucosa oral e faringe" type="Exame Físico: Mucosa oral e faringe" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 1 (Mucosa oral e faringe)" type="Localização 1 (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 2 (Mucosa oral e faringe)" type="Localização 2 (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Localização 3 (Mucosa oral e faringe)" type="Localização 3 (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Outras mucosas (Mucosa oral e faringe)" type="Outras mucosas (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Qual(ais) (Mucosa oral e faringe)" type="Qual(ais) (Mucosa oral e faringe)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Foto" type="Foto" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Presença de Linfonodos (Mucosa)" type="Presença de Linfonodos (Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Caso sim, descreva (presença de linfonodos)(Mucosa)" type="Caso sim, descreva (presença de linfonodos)(Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Tamanho do gânglio (cm) (Mucosa)" type="Tamanho do gânglio (cm) (Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Observações (Mucosa)" type="Observações (Mucosa)" organism="Leishmaniasis" showOrganism="false"/>
+	  </tests>
+      </form>
+      <form name="6. COLETA" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+        <tests>
+	  <test description="Biópsia" type="Biópsia" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Se sim, descreva (Biópsia)" type="Se sim, descreva (Biópsia)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Sangue" type="Sangue" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Se sim, descreva (Sangue)" type="Se sim, descreva (Sangue)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Aspirado de linfonodo" type="Aspirado de linfonodo" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Se sim, descreva (Aspirado de linfonodo)" type="Se sim, descreva (Aspirado de linfonodo)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Swab da lesão" type="Swab da lesão" organism="Leishmaniasis" showOrganism="false"/>  
+	  <test description="Se sim, descreva (Swab da lesão)" type="Se sim, descreva (Swab da lesão)" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Swab nasal" type="Swab nasal" organism="Leishmaniasis" showOrganism="false"/>  
+	  <test description="Se sim, descreva (Swab nasal)" type="Se sim, descreva (Swab nasal)" organism="Leishmaniasis" showOrganism="false"/>
+        </tests>
+      </form>
+      <form name="7. DIAGNOSTICO LABORATORIAL" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+       <tests> 
+	<test description="IFI" type="IFI" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="HBV" type="HBV" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="HTLV" type="HTLV" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="HIV" type="HIV" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="HCV" type="HCV" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Hemácias(milhões/mm3)" type="Hemácias" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Hemoglobina(g/dL)" type="Hemoglobina" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Hematócrito(%)" type="Hematócrito" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Leucocitos(%)" type="Leucocitos" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Meta(%)" type="Meta" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Bastões(%)" type="Bastões" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Segmentados(%)" type="Segmentados" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Eosinófilos(%)" type="Eosinófilos" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Linfócitos(%)" type="Linfócitos" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Monócitos(%)" type="Monócitos" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Plaquetas(/mm3)" type="Plaquetas" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Tgo(U/L)" type="Tgo" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Tgp(U/L)" type="Tgp" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Ureia" type="Ureia" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Creatinina" type="Creatinina" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Glicemia /Jejum" type="Glicemia /Jejum" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Ecg" type="Ecg" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Vel. Hemossed. " type="Vel. Hemossed. " organism="Leishmaniasis" showOrganism="false"/>
+      	<test description="E. Paras. Fezes" type="E. Paras. Fezes" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Amilase" type="Amilase" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Lipase" type="Lipase" organism="Leishmaniasis" showOrganism="false"/>
+  	<test description="Parasitose intestinal" type="Parasitose intestinal" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="Qual parasitose intestinal" type="Qual parasitose intestinal" organism="Leishmaniasis" showOrganism="false"/>
+      </tests>
+     </form>
+     <form name="8. DIAGNOSTICO LEISHMANIA" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+      <tests>
+	<test description="IDRM (mm)" type="IDRM (mm)" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="ELISA (Anti Leishmania)" type="ELISA (Anti Leishmania)" organism="Leishmaniasis" showOrganism="false"/>
+	<test description="PCR (Qualitativo)" type="PCR (Qualitativo)" organism="Leishmaniasis" showOrganism="false"/>
+        <test description="ANATOMIA PATOLOGICA" type="ANATOMIA PATOLOGICA" organism="Leishmaniasis" showOrganism="false"/>
+        <test description="Presença de parasita na Biópsia" type="Presença de parasita na Biópsia" organism="Leishmaniasis" showOrganism="false"/>
+        <test description="Presença de parasita no Linfonodo" type="Presença de parasita no Linfonodo" organism="Leishmaniasis" showOrganism="false"/>
+        <test description="Citologia do Linfonodo" type="Citologia do Linfonodo" organism="Leishmaniasis" showOrganism="false"/>
+      </tests>
+     </form>
+     <form name="9. ACOMPANHAMENTO" gridRowCount="1" todayDefaultContactDate="true" showSampleId="false">
+      <tests>
+	  <test description="Status da Lesão" type="Status da Lesão" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Nível Quantitativo das Lesões" type="Nível Quantitativo das Lesões" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Status do tratamento" type="Status do tratamento" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Frequência do tratamento" type="Frequência do tratamento" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Tempo de acompanhamento" type="Tempo de acompanhamento" organism="Leishmaniasis" showOrganism="false"/>
+	  <test description="Observações" type="Observações" organism="Leishmaniasis" showOrganism="false"/>  
+      </tests>
+     </form>
+     </multiple-test-result-forms>
+
+   <forms>
+     <form name="datatable.patient.SelectPatientForm" showSampleIds="true">
+       <attribute-filter>
+        <attribute name="Gender" group="Personal" />
+	 </attribute-filter>
+       <attributes>
+         <attribute name="Country of origin" group="Demographics" />
+       </attributes>
+     </form>
+     
+     <form name="form.multipleTestResults.contact" gridRowCount="1">
+       	<tests>
+	<!--
+         <test description="Viral Load (copies/ml) (generic)" organism="HCV" />
+         <test description="ALT" organism="HCV" />
+	 <test description="AST" organism="HCV" />
+	 <test description="LIPA genotype" organism="HCV" />
+	 <test description="LIPA subtype" organism="HCV" /> -->
+	</tests>
+     </form>
+     <form name="form.viralIsolate">
+	<tests>
+      </tests>
+     </form>
+   </forms>
+   <trugene-fix>true</trugene-fix>
+
+   <e-mail>
+     <host>exchbe1.chlo.local</host>
+     <from address="regadb@chlo.local" />
+     <to>
+       <recipient address="" />
+       <recipient address="" />
+     </to>
+   </e-mail>
+ </institute>
+	<access-policies>
+		<roles>
+			<role>
+				<name>admin</name>
+				<admin>true</admin>
+				<blocked-attributes>
+                                </blocked-attributes>
+			</role>
+			<role>
+				<name>user</name>
+				<admin>false</admin>
+				<blocked-attributes>
+        			</blocked-attributes>
+			</role>
+		</roles>
+	</access-policies>
+	
+ <hibernate>
+   <property name="hibernate.connection.username"></property>
+   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+   <property name="hibernate.connection.password"></property>
+   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+   <property name="hibernate.connection.url">jdbc:</property>
+ </hibernate>
+
+  <access-policies>
+    <!-- each user is connected to one role -->
+    <roles>
+      <role>
+        <name>administrador</name>
+        <admin>true</admin>
+        <blocked-attributes/>
+      </role>
+      <role>
+        <name>usuario</name>
+        <admin>false</admin>
+        <!-- disabled viewing and editing of certain attributes -->
+        <blocked-attributes>
+          
+        </blocked-attributes>
+      </role>
+    </roles>
+  </access-policies>
+
+ <!--<proxies>
+  <proxy>
+    <host>proxy1.chlo.local</host>
+    <port>8080</port>
+  </proxy>
+ </proxies>-->
+
+<!--<cron>
+  <job name="retry_sequence_analysis" expression="0 0 2 ? * *"
+       class="net.sf.regadb.system.cron.jobs.RetrySequenceAnalysis">
+    <param name="user" value="admin"/>
+    <param name="pass" value="africa"/>
+  </job>
+</cron>-->
+</regadb-settings>

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+monitor_file="$1/.monitor"
+running_file="$1/.running"
+
+cp /dev/null $monitor_file
+
+genome=`cat "$1/inputs/genome"`
+sequences="$1/inputs/sequences"
+
+mutations="$1/outputs/mutations"
+
+/soft/bin/regadb_align /soft/wts/file-providers/regadb-genomes/genomes.xml "$genome" "$sequences" > "$mutations" 2>> $monitor_file
+
+echo "Calculation ended" >> $monitor_file
+
+rm "$running_file"
+
+echo "ENDED_SUCCES" > "$1/.ended"
+

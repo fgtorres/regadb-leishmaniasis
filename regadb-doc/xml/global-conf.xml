@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regadb-settings>
+  <institute>
+	<!--  directory for logging files, read/write permissions necessary
+	      this field is required 
+	-->  
+    <log-dir>/etc/rega_institute/regadb/log</log-dir>
+    
+    <!--  directory for temporary query results, appropriate read/write permissions necessary
+	  this field is required 
+    -->
+    <query-result-dir>/etc/rega_institute/regadb/query</query-result-dir>
+    
+	<!--  directory for import definition storage, appropriate read/write permissions necessary
+	  this field is required 
+    -->
+    <import-tool-dir>/etc/rega_institute/regadb/import</import-tool-dir>
+
+    <!--  image file containing an alternative logo
+	      this field is optional
+	-->  
+  	<logo>pics/htlv/logo.gif</logo>
+    
+	<!--  boolean value describing whether the viral isolate sample date should be mandatory 
+	--> 
+    <sample-date-mandatory>true</sample-date-mandatory>
+    
+    <!-- Email configuration 
+    	Optional -->
+    <e-mail>
+    	<host>relay.test.org</host>
+    	<from address="admin@test.org" />
+    	<to>
+			<recipient address="pieter.libin@mybiodata.eu" />
+			<recipient address="stijn.imbrechts@kuleuven.ac.be" />
+		</to>
+    </e-mail>
+    
+    <!-- General properties -->
+    <!--  Automatically split trugene sequences with > 100 n symbols (Optional)-->
+    <trugene-fix>true</trugene-fix>
+    
+    <!-- default selected dataset when adding a patient, optional -->
+    <default-dataset>dataset name</default-dataset>
+    
+    <!-- the number of times the wts client has to retry upon failure, optional (default is 0) -->
+    <wts-nr-of-retries>2</wts-nr-of-retries>
+    
+    <!--  configuration for Belgian WIV queries
+	  this element is optional 
+    -->
+    <wiv>
+      <!-- the name of the WIV centre -->
+      <centre-name>KUL</centre-name>
+      
+      <!--
+      	specify an attribute value to distinguish ARC from ARL patients,
+      	only patients with this attribute value will show up in the ARC queries,
+      	when omitted, all patients will be used for ARC
+      -->
+      <arc-patient-filter>
+        <attribute name="FOLLOW-UP" group="WIV" value="1: ARC of the same institution as ARL" />
+      </arc-patient-filter>
+      
+      <!--
+      	the viral load test type which values will be used for the viral load wiv queries
+      	copies/ml will be automatically converted to log10 in the query results
+      -->
+      <viral-load-testtype>
+        <testtype description="Viral Load (copies/ml)" organism="HIV-1" />
+      </viral-load-testtype>
+    </wiv>
+    
+    <!--  Patient chart configuration 
+    		(this element is optional).
+    	  By default HIV-1 Viral load (copies and log) and CD4 tests are used.
+     -->
+    <patient-chart>
+    	<!-- A configuration of the cell counts and viral loads to be used in the patient chart
+    		 (2 Y-axes are available).
+    	-->
+    	<!-- Configuration of the first Y axis 
+    		 This axis should only contain cell counts. -->
+    	<y1>
+    		<item kind="cell-count" name="CD4">
+    			<test-type type="CD4 Count (cells/ul)" />
+    		</item>
+    	</y1>
+    	<!-- Configuration of the second Y axis 
+    		 This axis should only contain viral loads. 
+    		 Note: a viral load test should have :
+    		  * a "limited number" value type
+    		  * an organism -->
+    	<y2>
+    		<!-- Multiple test types can be grouped in 1 item. -->
+    		<item kind="viral-load"  name="Viral load (${organism})">
+    			<test-type type="Viral Load (copies/ml)" />
+    			<test-type type="Viral Load (log10)" log="true"/>
+    		</item>
+    	</y2>
+    </patient-chart>
+    
+    <!--  configuration for HICDEP export
+	  		this element is optional
+    -->
+    <hicdep>
+    	<!-- BAS table section -->
+    	<BAS>
+	    	<!-- CENTER field configuration
+	    			an attribute can be configured to be used as the CENTER field
+	    			this element is optional -->
+	    	<CENTER>
+	    		<attribute name="my-center" group="my-group" />
+	    	</CENTER>
+	    	
+	    	<!-- CENS_D field configuration
+	    			a date attribute can be configured to be used as the CENS_D field
+	    			this element is optional -->
+	    	<CENS_D>
+	    		<attribute name="my-cens_d" group="my-group" />
+	    	</CENS_D>
+	    	
+	    	 <!-- ENROL_D field configuration
+	    			an event can be configured to be used as the ENROL_D field:
+	    			of all of these events belonging to a patient, 
+	    			the one with the most recent start date will be selected, 
+	    			this event's start date will be used as ENROL_D field in the 
+	    			HICDEP export
+	    			this element is optional -->
+	    	<ENROL_D>
+	    		<event name="my-enrol_d" />
+	    	</ENROL_D>
+    	</BAS>
+    	<!-- SAMPLES table section -->
+    	<SAMPLES>
+    		<!-- SAMP_TYPE field configuration
+    				a viral isolate test result can be used as the SAMP_TYPE field:
+    				the test type of this test result should be nominal, 
+    				and the nominal values may be mapped in this configuration test.
+    				If a value (after mapping) is not part of this set
+    				{BP, BS, C, D, S, OTH:*}, a fatal exception will be thrown.
+    		 -->
+    		<SAMP_TYPE>
+    			<test name="Sample Source" type="Sample Source Type">
+           			<map from="Plasma" to="BP"/>
+           			<map from="CSF" to="OTH:CSF"/>
+    			</test>
+    		</SAMP_TYPE>
+    	</SAMPLES>
+    	
+    	<!-- LAB table section : allows for the configuration of multiple test mappings
+    			Optional element
+    	-->
+    	<LAB>
+    		<!-- test mapping configuration:
+    				regadb-name: the name of the test in RegaDB  
+    				regadb-type-name: the name of the test's type in RegaDB  
+    				hicdep-id: the name of the HICDEP LAB_ID (see HICDEP documentation)
+    				hicdep-unit: the unit for the test, will be stored in the LAB_U HICDEP field (see HICDEP documentation)
+    				a test mapping can contain several mapping definitions:
+    				there are currently 2 types of mappings: string and interval
+    					- A string mapping simply converts a string value to another
+    					  string value.
+    					- An interval mappings converts a floating point value to another
+    					  value (can be any kind: string, floating point, ...), if the 
+    					  floating point value lies within the specified interval.
+    					  An interval can be defined using the mathematical notation:
+    					  [a,b] where:
+    					  	'a' is a number or '-Infinity'
+    					  	'b' is a number or '+Infinity'
+    					  	'a' < 'b'
+    					  Note: as in the mathematical notation, the brackets can be open '[' or 
+    					  closed ']'.
+    				The mapping rules are expected to be mutually exclusive.
+    		 -->
+			<test 	regadb-name="CD8 Count" 
+					regadb-type-name="CD8 Count"
+					hicdep-lab-id="CD8"
+					hicdep-lab-unit="10">
+					<map type="string" from="0" to="-1"/>
+					<map type="interval" from="[-inf,0[" to="-1"/>
+			</test>
+    	</LAB>
+    	
+    	 <!-- LAB_VIRO table section : allows for the configuration of multiple test mappings
+    			Optional element
+    	-->
+    	<LAB_VIRO>
+    		<!-- test mapping configuration:
+    				regadb-name: the name of the test in RegaDB  
+    				regadb-type-name: the name of the test's type in RegaDB  
+    				hicdep-id: the name of the HICDEP VS_ID (see HICDEP documentation)
+    				hicdep-unit: the unit for the test, will be stored in the VS_U HICDEP field (see HICDEP documentation)
+    				a test mapping can contain several mapping definitions:
+    				there are currently 2 types of mappings: string and interval
+    					- A string mapping simply converts a string value to another
+    					  string value.
+    					- An interval mappings converts a floating point value to another
+    					  value (can be any kind: string, floating point, ...), if the 
+    					  floating point value lies within the specified interval.
+    					  An interval can be defined using the mathematical notation:
+    					  [a,b] where:
+    					  	'a' is a number or '-Infinity'
+    					  	'b' is a number or '+Infinity'
+    					  	'a' < 'b'
+    					  Note: as in the mathematical notation, the brackets can be open '[' or 
+    					  closed ']'.
+    				The mapping rules are expected to be mutually exclusive.
+    		 -->
+			<test 	regadb-name="CMV IgG (generic)" 
+					regadb-type-name="CMV IgG"
+					hicdep-lab-id="CMVA"
+					hicdep-lab-unit="?">
+					<map type="interval" from="]-Infinity,0.9[" to="0"/>
+					<map type="interval" from="[0.9, 1.09]" to="9"/>
+					<map type="interval" from="]1.09,+Infinity[" to="1"/>
+			</test>
+			<test 	regadb-name="CMV IgG (Architect) (qualitative)" 
+					regadb-type-name="CMV IgG (qualitative)"
+					hicdep-lab-id="CMVA"
+					hicdep-lab-unit="?">
+					<map type="string" from="Negative" to="0"/>
+					<map type="string" from="Positive" to="1"/>
+			</test>
+    	</LAB_VIRO>
+    </hicdep>
+    
+    <!--
+    	the maximum amount of days a test result`s date can deviate from the viral isolate`s
+    	sample date, for it to be included in a patient`s viral isolate resistance report
+			
+        this field is optional 
+    --> 
+    <report-date-tolerance>2</report-date-tolerance>
+    
+    <!--
+    	the date format, detailed information on the format:
+    	http://java.sun.com/javase/6/docs/api/java/text/SimpleDateFormat.html
+
+	this field is optional
+    -->
+    <date-format>dd/MM/yyyy</date-format>
+    
+    <!-- 
+    	Backup script to export a binary/text version of the database.
+    	The script should accept 3 parameters:
+    	 - Hibernate user name to access the database
+    	 - Hibernate user password to access the database
+    	 - file to which the SQL output can be written,
+    	 	the SQL will be compressed and presented to the user as a zip file
+    	
+    	This field is optional.
+     -->
+    <database-backup-script>/usr/backup-db.sh</database-backup-script>
+    
+    <!-- 
+    	The organism filter can be used to exclude certain organisms from RegaDB.
+    	
+    	This field is optional.
+     -->
+    <organism-filter>HIV*</organism-filter>
+    
+    <forms>
+      <!--
+      	patient select form configuration:
+      	showSampleIds:		show the sample id column
+      	attribte-filter:	the default attribute to be selected in the attribute-column, optional
+      	attributes:			the list of attributes to be present in the selection table
+
+	this element is optional
+      -->
+      <form name="datatable.patient.SelectPatientForm" showSampleIds="true">
+        <attribute-filter>
+          <attribute name="Gender" group="Personal" />
+        </attribute-filter>
+        <attributes>
+          <attribute name="First name" group="Personal" />
+          <attribute name="Last name" group="Personal" />
+        </attributes>
+      </form>
+      
+	  <!--  viral isolate form configuration
+
+            this element is optional
+      -->
+      <form name="form.viralIsolate">
+		<!-- list of isolate tests in the form -->
+        <tests>
+          <test type="Authors" 
+          		description="Authors" />
+          <test type="Article" 
+          		description="Article" />
+          <!-- a nominal value test may define a default value -->
+          <test type="Sample Source" 
+          		description="Sample Source" 
+          		defaultValue="Plasma"/>
+          <!-- by default a "No value selected" entry is show in the nominal value combobox,
+          		this can be hidden by setting this attribute: noValueSelected="false" -->
+          <test type="Sample Source2" 
+          		description="Sample Source2" 
+          		noValueSelected="false"/>		
+        </tests>
+        
+        <!-- list of sequence tests in the form (these tests are shown for each sequence)
+        	optional: 
+        		note that in order to show the "Contaminiation" nominal test, 
+        		it should be added here as well, the "Contamination Cluster Factor"
+        		is shown by default (in view mode only) if a result is available
+       	  -->
+        <sequence-tests>
+          <test type="Sequence batch date" 
+          		description="Sequence batch date" />
+          <!-- a nominal value test may define a default value -->
+          <test type="Problematic sequence"
+          		description="Problematic sequence" 
+          		defaultValue="No"/>
+          <!-- by default a "No value selected" entry is show in the nominal value combobox,
+          	   this can be hidden by setting this attribute: noValueSelected="false" -->
+          <test type="Problematic sequence2"
+          		description="Problematic sequence2" 
+          		noValueSelected="false"/>		
+        </sequence-tests>
+        
+        <!--  This element is optional -->
+        <resistance>
+        	<algorithms>
+        		<algorithm name="ANRS v2008.17" organism="HIV-1" />
+        		<algorithm name="HIVDB v5.1.3" organism="HIV-1" />
+        		<algorithm name="REGA v8.0.1" organism="HIV-1" />
+        	</algorithms>
+        	<scores>
+        		<score gssCutoff="0.0" string="R" description="Resistant" color="#fff" background-color="#ff0000"/>
+        		<score gssCutoff="0.5" string="I" description="Intermediate resistant" color="#000" background-color="#ffff00"/>
+        		<score gssCutoff="Infinity" string="S" description="Susceptible" color="#000" background-color="#00ff00"/>
+        	</scores>
+        </resistance>
+      </form>
+      
+      <!--  custom contact form configuration 
+
+            this element is optional
+      -->
+      <form name="form.multipleTestResults.contact">
+      	<!-- list of tests in the form -->
+        <tests>
+          <test type="CD4 Count (cells/ul)"
+          		description="CD4 Count (generic)" />
+          <test type="CD8 Count"
+          		description="CD8 Count (generic)" />
+          <test type="Viral Load (copies/ml)"
+          		description="Viral Load (copies/ml) (generic)" 
+          		organism="HIV-1" />
+        </tests>
+        <!--
+        	list of events in the form
+        	useContactDate: use the contact date as start date of the events
+        -->
+        <events useContactDate="true">
+        	<event name="Pregnancy"/>
+        </events>
+      </form>
+    </forms>
+  </institute>
+  
+  <!--  Hibernate database connection configuration
+	
+	this element is required
+  -->
+  <hibernate>
+    <!-- database username -->
+    <property name="hibernate.connection.username">regadb_user</property>
+    <!-- database driver class-->
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <!-- database password -->
+    <property name="hibernate.connection.password">regadb_password</property>
+    <!-- database dialect -->
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <!-- database url -->
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/regadb</property>
+  </hibernate>
+ 
+  <!--  access policies
+        this element is required, at least one role should be defined
+  --> 
+  <access-policies>
+    <!-- each user is connected to one role -->
+    <roles>
+      <role>
+        <name>admin</name>
+        <admin>true</admin>
+        <blocked-attributes/>
+      </role>
+      <role>
+        <name>user</name>
+        <admin>false</admin>
+        <!-- disabled viewing and editing of certain attributes -->
+        <blocked-attributes>
+          <attribute name="First name" group="Personal" />
+          <attribute name="Last name" group="Personal" />
+        </blocked-attributes>
+      </role>
+    </roles>
+  </access-policies>
+  	
+
+  <!--  a list of proxy servers, with optional authentication 
+        this element is only required if your installation is behind a proxy server
+        the optional 'type' attribute can be either 'http' (default) or 'socks'
+  -->
+  <proxies>
+    <proxy type="http">
+      <host>www-proxy</host>
+      <port>3128</port>
+      <user>user1</user>
+      <password>pass1</password>
+    </proxy>
+  </proxies>
+
+  <!--  Contamination tool configuration
+	Optional: Only required when using the contamination tool.
+	Note: This functionality requires a sequence-database.
+  -->  
+  <contamination>
+  	<!-- cluster factor threshold -->
+  	<threshold>0.5</threshold>
+        
+        <!-- a positive value for the boolean sendmail option will make the 
+             contamination tool send an e-mail if it's value is true each 
+             time a contamination was detected (an e-mail configuration is 
+             required to make this work).
+             
+             Optional: by default no mail will be sent
+        -->
+        <send-mail>true</send-mail>
+
+        <!-- list of log-normal distribution parameters per region 
+	     (a region is a range within an ORF)
+	     Note: log-normal distributions can be approximated,
+	           a howto can be found in the RegaDB installation manual.
+          -->
+        <distributions>
+          <distribution organism="HIV-1" orf="pol" start="169" end="1786"
+                        Di_mu="-3.896448912" Di_sigma="0.747342409" 
+                        Do_mu="-2.6001244697" Do_sigma="0.3277675448"/>
+        </distributions>
+  </contamination>
+  
+  <!-- Sequence database configuration 
+       A sequence database is a directory containing all RegaDB sequences 
+       in an aligned format.
+       When this configuration is completed, logging in to RegaDB will fill the
+       sequence database directory with all sequences currently stored in 
+       RegaDB.
+    -->
+  <sequence-database>
+  	<!-- Sequence database path -->
+	<path>/etc/rega_institute/regadb/sequencedb</path>
+	<!-- Similarity treshold (minimum) -->
+	<similarity-threshold>0.975</similarity-threshold>
+  </sequence-database>
+  
+  <!-- a list of cron jobs to be run at specified times/intervals
+       this element is optional
+  -->  
+  <cron>
+    <!-- a cron job
+         expression: define time/interval in the cron format
+         class: java class to be run, has to implement org.quartz.Job interface
+     -->
+    <job name="ghb-lis" expression="0 0 0 ? * sat" class="net.sf.regadb.system.cron.jobs.TestJob">
+      <!-- list of parameters -->
+      <param name="foo" value="bar"/>
+      <param name="hello" value="world"/>
+    </job>
+  </cron>
+</regadb-settings>
